@@ -1,3 +1,6 @@
+#Author : Eko Prasetyo
+#NIM : 20180801185
+#Universitas Esa Unggul - Fakultas Ilmu Komputer
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -35,7 +38,15 @@ Vagrant.configure("2") do |config|
       shell.path = "https://gist.githubusercontent.com/ekkoprasetyo/166d3e635e63f1eb5dafb89ca92fddd0/raw/ca35b847f1ff7a5616c609524db62a91ac48de59/provision-web.sh"
     end
   end
-
+  
+  config.vm.define "eko-mysql" do |mysql|
+    mysql.vm.box = "ubuntu/trusty64"
+    mysql.vm.network "private_network", ip: "100.100.1.13"
+    mysql.vm.provision :shell do |shell|
+      shell.args = "3"
+      shell.path = "https://gist.githubusercontent.com/ekkoprasetyo/04ae58fd8c410dd6d97200d182aad636/raw/325b617ac11f6bbc89d8c1dc3cd8786ae5bb8458/provision-mysql.sh"
+    end
+  end
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
